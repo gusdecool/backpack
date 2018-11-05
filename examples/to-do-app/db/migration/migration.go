@@ -7,12 +7,12 @@ import (
 
 func Migrate() error {
 	db, err := connector.Connect()
-	defer db.Close()
 
 	if err != nil {
 		return err
 	}
 
+	defer db.Close()
 	db.AutoMigrate(&model.Task{})
 
 	return nil

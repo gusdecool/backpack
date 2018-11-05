@@ -31,13 +31,13 @@ func List(response http.ResponseWriter, request *http.Request) {
 
 func Create(response http.ResponseWriter, request *http.Request) {
 	taskModel, err := decode(request)
-	taskModel.CreatedAt = time.Now()
 
 	if err != nil {
 		utility.HandleErrorResponse(err, response)
 		return
 	}
 
+	taskModel.CreatedAt = time.Now()
 	_, err = repo.Create(&taskModel)
 
 	if err != nil {
